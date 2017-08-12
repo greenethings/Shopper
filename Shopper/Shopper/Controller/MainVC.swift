@@ -12,9 +12,9 @@ class MainVC: UIViewController {
 
     @IBOutlet weak var wageTxt: CurrencyTxtField!
     @IBOutlet weak var priceTxt: CurrencyTxtField!
-    
     @IBOutlet weak var resultLbl: UILabel!
     @IBOutlet weak var hoursLbl: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,8 +28,8 @@ class MainVC: UIViewController {
         wageTxt.inputAccessoryView = calcBtn
         priceTxt.inputAccessoryView = calcBtn
         
-        resultLbl.isHidden = true
-        hoursLbl.isHidden = true
+        //hide result and hours label
+        isHiddenTrue()
     }
     
     @objc func calculate() {
@@ -37,8 +37,7 @@ class MainVC: UIViewController {
         if let wageTxt = wageTxt.text, let priceTxt = priceTxt.text {
             if let wage = Double(wageTxt), let price = Double(priceTxt) {
                 view.endEditing(true)
-                resultLbl.isHidden = false
-                hoursLbl.isHidden = false
+                isHiddenFalse()
                 resultLbl.text = "\(Wage.getHours(forWage: wage, andPrice: price))"
                 
             }
@@ -46,18 +45,21 @@ class MainVC: UIViewController {
     }
     
     @IBAction func clearCalculatorPressed(_ sender: Any) {
-        resultLbl.isHidden = true
-        hoursLbl.isHidden = true
+        isHiddenTrue()
         wageTxt.text = ""
         priceTxt.text = ""
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func isHiddenTrue() {
+        resultLbl.isHidden = true
+        hoursLbl.isHidden = true
     }
-
+    
+    func isHiddenFalse() {
+        resultLbl.isHidden = false
+        hoursLbl.isHidden = false
+    }
 
 }
 

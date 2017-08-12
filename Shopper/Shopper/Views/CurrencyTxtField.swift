@@ -12,6 +12,7 @@ import UIKit
 
 class CurrencyTxtField: UITextField {
     
+    //format label to display locale currency
     override func draw(_ rect: CGRect) {
         let size: CGFloat = 20
         let currencyLbl = UILabel(frame: CGRect(x: 5, y: (frame.size.height / 2) - size / 2, width: size, height: size))
@@ -26,7 +27,8 @@ class CurrencyTxtField: UITextField {
         currencyLbl.text = formatter.currencySymbol
         addSubview(currencyLbl)
     }
-
+    
+    //call customizeView to display simulator in interfaceBuilder
     override func prepareForInterfaceBuilder() {
         customizeView()
     }
@@ -37,6 +39,7 @@ class CurrencyTxtField: UITextField {
         
     }
     
+    //code to display simulator view in interfaceBuilder
     func customizeView() {
         backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.2500267551)
         layer.cornerRadius = 5.0
